@@ -1,10 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import * as nums from './numbers';
 
-const stringNew = 'Today is a great day';
-const numberOne = 55;
-const numberTwo = 23;
-const boolOne = true;
+const multi = nums.count * nums.length;
 
 function App() {
   return (
@@ -14,23 +12,9 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <p style={{
-          color: '#68c9e5'
-        }}>
-          Hello, World!
+        <p>
+          {multi}
         </p>
-        <div>
-          {stringNew}, {boolOne && 'It is true'}, {boolOne ? 'boolOne is true' : 'boolOne is false'}
-        </div>
-        <div>
-          {numberOne}, {numberOne - numberTwo}
-        </div>
-        <div>
-          {undefined}
-          {null}
-          {false}
-          {true}
-        </div>
         <a
           className="App-link"
           href="https://reactjs.org"
