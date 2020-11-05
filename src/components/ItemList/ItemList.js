@@ -1,9 +1,9 @@
 import Item from '../Item/Item';
 
-const ItemList = () => (<ul>
-  <li><Item /></li>
-  <li><Item /></li>
-  <li><Item /></li>
+const ItemList = ({ todoItem }) => (<ul>
+  <li><Item todoItem={todoItem} /></li>
+  <li><Item todoItem={'Почитать книгу'} /></li>
+  <li><Item todoItem={'Скушать шоколадку'} /></li>
 </ul>);
 
 export default ItemList;
