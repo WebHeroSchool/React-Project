@@ -1,7 +1,12 @@
+.wrap {
+  display: flex;
+}
+
 .item {
+  padding-top: 15px;
   color: #333;
 }
 
 .done {
-  color: #a08eb4;
+  color: #992959;
 }

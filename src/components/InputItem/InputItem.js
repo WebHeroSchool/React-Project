@@ -1,11 +1,12 @@
+import styles from './InputItem.module.css';
 import TextField from '@material-ui/core/TextField';
 
-const InputItem = () => (<div>
+const InputItem = () => (<div className={styles.input}>
   <TextField
-    label="Текст"
+    label="Text"
     id="outlined-margin-dense"
-    defaultValue="Добавить задание"
-    helperText="Введите нужное Вам задание"
+    defaultValue="Add task"
+    helperText="Enter the task You need"
     margin="dense"
     variant="outlined"
   />
