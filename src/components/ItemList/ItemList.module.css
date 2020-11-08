@@ -1,1 +1,7 @@
+.list {
+  list-style-type: none;
+}
 
+.li {
+  padding-top: 15px;
+}
