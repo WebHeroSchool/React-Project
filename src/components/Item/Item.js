@@ -4,10 +4,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import styles from './Item.module.css';
 import classnames from 'classnames';
 
-const Item = ({ value, isDone }) => (
+const Item = ({ value, isDone, onClickDone }) => (
   <div className={styles.wrap}>
     <Checkbox
       color="default"
+      onClick={() => onClickDone(isDone)}
     />
     <span className={
     classnames({
