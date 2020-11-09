@@ -5,15 +5,20 @@ import Button from '@material-ui/core/Button';
 
 class InputItem extends React.Component {
   state = {
-    inputValue: ''
+    inputValue: '',
+    inputError: false
   };
 
   onButtonClick = () => {
+    if (this.state.inputValue == '') {
+      this.setState({ inputError: true})
+    } else {
+      this.props.onClickAdd(this.state.inputValue);
+    }
+
     this.setState ({
       inputValue: ''
     });
-
-    this.props.onClickAdd(this.state.inputValue);
   }
 
   render () {
@@ -22,6 +27,9 @@ class InputItem extends React.Component {
     return (<div className={styles.input}>
       <div>
         <TextField
+          error={this.state.inputError}
+          id="outlined-error-helper-text"
+          helperText="Empty space"
           label="Text"
           id="outlined-margin-dense"
           defaultValue="Add task"
@@ -29,10 +37,13 @@ class InputItem extends React.Component {
           margin="dense"
           variant="outlined"
           value={this.state.inputValue}
-          onChange={event => this.setState({ inputValue: event.target.value })}
+          onChange={event => {
+            this.setState({ inputError: false })
+            this.setState({ inputValue: event.target.value })}
+          }
         />
       </div>
-      <div>
+      <div className={styles.adding}>
         <Button
           size="large"
           onClick={this.onButtonClick}

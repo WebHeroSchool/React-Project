@@ -10,7 +10,6 @@ body {
 .container {
   margin: auto;
   width: 550px;
-  height: 450px;
   border-radius: 10px;
   background-color: #f0e9de;
   border-right: 1px solid #a0886a;
