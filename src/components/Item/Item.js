@@ -18,7 +18,10 @@ const Item = ({ value, isDone, id, onClickDone, onClickDelete }) => (
     }> 
     {value}
   </span>
-  <IconButton className={styles.button} aria-label="delete">
+  <IconButton
+    className={styles.button}
+    aria-label="delete"
+  >
     <DeleteIcon
       onClick = {() => onClickDelete(id)}
     />

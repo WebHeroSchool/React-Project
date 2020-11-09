@@ -7,7 +7,7 @@ const ItemList = ({ items, onClickDone, onClickDelete }) => (<ul className={
     [styles.list]: true
   })
 }>
-  {items.map(item => <li className={styles.li} key={item.value}>
+  {items.map(item => <li className={styles.li} key={item.id}>
     <Item
       value={item.value}
       isDone={item.isDone}
