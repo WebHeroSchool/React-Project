@@ -1,11 +1,12 @@
 import styles from './Footer.module.css';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 
 const Footer = ({ count }) => {
-  Footer.defaultProps = {
-    count: 0
+  Footer.propTypes = {
+    count: PropTypes.number.isRequired
   }
   
   return (<div className={styles.footer}>

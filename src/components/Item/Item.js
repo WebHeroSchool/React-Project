@@ -3,10 +3,12 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import styles from './Item.module.css';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 const Item = ({ value, isDone, id, onClickDone, onClickDelete }) => {
-  Item.defaultProps = {
-    isDone: false
+  Item.propTypes = {
+    value: PropTypes.string.isRequired,
+    isDone: PropTypes.bool.isRequired
   }
 
   return (<div className={styles.wrap}>
