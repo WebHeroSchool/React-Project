@@ -4,8 +4,12 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import styles from './Item.module.css';
 import classnames from 'classnames';
 
-const Item = ({ value, isDone, id, onClickDone, onClickDelete }) => (
-  <div className={styles.wrap}>
+const Item = ({ value, isDone, id, onClickDone, onClickDelete }) => {
+  Item.defaultProps = {
+    isDone: false
+  }
+
+  return (<div className={styles.wrap}>
     <Checkbox
       color="default"
       onClick={() => onClickDone(id)}
@@ -17,15 +21,16 @@ const Item = ({ value, isDone, id, onClickDone, onClickDelete }) => (
     })
     }> 
     {value}
-  </span>
-  <IconButton
-    className={styles.button}
-    aria-label="delete"
-  >
-    <DeleteIcon
-      onClick = {() => onClickDelete(id)}
-    />
-  </IconButton>
-</div>);
+    </span>
+    <IconButton
+      className={styles.button}
+      aria-label="delete"
+    >
+      <DeleteIcon
+        onClick = {() => onClickDelete(id)}
+      />
+    </IconButton>
+  </div>)
+};
 
 export default Item;

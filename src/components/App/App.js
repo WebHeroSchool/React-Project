@@ -28,10 +28,10 @@ class App extends React.Component {
 
   onClickDone = id => {
     const newItemList = this.state.items.map(item => {
-      const newItem = { ...item };
-      if (item.id === id) {
-        newItem.isDone = !item.isDone;
-      }
+    const newItem = { ...item };
+    if (item.id === id) {
+      newItem.isDone = !item.isDone;
+    }
 
       return newItem;
     })
@@ -40,7 +40,7 @@ class App extends React.Component {
   }
 
   onClickDelete = id => this.setState(state => ({
-     items: state.items.filter(item => item.id !== id)
+    items: state.items.filter(item => item.id !== id)
   }));
 
   onClickAdd = value => this.setState(state => ({
