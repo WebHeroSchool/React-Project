@@ -1,74 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import InputItem from '../InputItem/InputItem';
-import ItemList from '../ItemList/ItemList';
-import Footer from '../Footer/Footer';
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Todo from '../Todo/Todo';
+import About from '../About/About';
+import Contacts from '../Contacts/Contacts';
 import styles from './App.module.css';
-
+import {MenuItem, MenuList} from '@material-ui/core';
 
 const App = () => {
-  const [items, setItems] = useState ([
-    {
-      value: 'Read a book',
-      isDone: false,
-      id: 1
-    },
-    {
-      value: 'Cook a pie',
-      isDone: false,
-      id: 2
-    },
-    {
-      value: 'Go for a walk',
-      isDone: false,
-      id: 3
-    }
-  ]);
-
-  useEffect(() => {
-    console.log('create');
-  });
-
-  useEffect(() => {
-    console.log('update');
-  }, [items]);
-
-  let tasksCount = items.length;
-
-  const onClickDone = id => setItems(items.map(item => {
-    let newItem = { ...item };
-
-    if (item.id === id) {
-      newItem.isDone = !item.isDone;
-    }
-
-    return newItem;
-  }));
-
-  const onClickDelete = id => setItems(items.filter(item => item.id !== id));
-
-  const onClickAdd = value => {
-    setItems([
-      ...items,
-      {
-        value: value,
-        isDone: false,
-        id: tasksCount + 1
-      }
-    ])
-  };
-
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Important things to do:</h1>
-      <InputItem onClickAdd={onClickAdd} />
-      <ItemList
-        items={items}
-        onClickDone={onClickDone}
-        onClickDelete={onClickDelete}
-      />
-      <Footer count={tasksCount} />
-    </div>
-  );
-};
+    <Router>
+      <div className={styles.container}>
+        <MenuList>
+          <Link to='/' className={styles.link}>
+            <MenuItem>About</MenuItem>
+          </Link>
+          <Link to='/todo' className={styles.link}>
+            <MenuItem>Todo</MenuItem>
+          </Link>
+          <Link to='/contacts' className={styles.link}>
+            <MenuItem>Contacts</MenuItem>
+          </Link>
+        </MenuList>
+      </div>
+      <div>
+        <Route path='/' exact component={About} />
+        <Route path='/todo' component={Todo} />
+        <Route path='/contacts' component={Contacts} />
+      </div>
+    </Router>
+  )
+}
 
 export default App;
