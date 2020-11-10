@@ -10,7 +10,7 @@ class InputItem extends React.Component {
   };
 
   onButtonClick = () => {
-    if (this.state.inputValue == '') {
+    if (this.state.inputValue === '') {
       this.setState({ inputError: true})
     } else {
       this.props.onClickAdd(this.state.inputValue);
@@ -28,10 +28,8 @@ class InputItem extends React.Component {
       <div>
         <TextField
           error={this.state.inputError}
-          id="outlined-error-helper-text"
           helperText="Empty space"
           label="Text"
-          id="outlined-margin-dense"
           defaultValue="Add task"
           helperText="Enter the task You need"
           margin="dense"

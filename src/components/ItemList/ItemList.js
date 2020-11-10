@@ -1,6 +1,5 @@
 import Item from '../Item/Item';
 import styles from './ItemList.module.css';
-import classnames from 'classnames';
 
 const ItemList = ({ items, onClickDone, onClickDelete }) => (
   <ul className={styles.list}>
