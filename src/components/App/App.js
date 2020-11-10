@@ -1,74 +1,74 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import InputItem from '../InputItem/InputItem';
 import ItemList from '../ItemList/ItemList';
 import Footer from '../Footer/Footer';
 import styles from './App.module.css';
 
-class App extends React.Component {
-  state = {
-    items: [
-      {
-        value: 'Read a book',
-        isDone: false,
-        id: 1
-      },
-      {
-        value: 'Cook a pie',
-        isDone: false,
-        id: 2
-      },
-      {
-        value: 'Go for a walk',
-        isDone: false,
-        id: 3
-      }
-    ],
-    count: 3
-  };
 
-  onClickDone = id => {
-    const newItemList = this.state.items.map(item => {
-    const newItem = { ...item };
+const App = () => {
+  const [items, setItems] = useState ([
+    {
+      value: 'Read a book',
+      isDone: false,
+      id: 1
+    },
+    {
+      value: 'Cook a pie',
+      isDone: false,
+      id: 2
+    },
+    {
+      value: 'Go for a walk',
+      isDone: false,
+      id: 3
+    }
+  ]);
+
+  useEffect(() => {
+    console.log('create');
+  });
+
+  useEffect(() => {
+    console.log('update');
+  }, [items]);
+
+  let tasksCount = items.length;
+
+  const onClickDone = id => setItems(items.map(item => {
+    let newItem = { ...item };
+
     if (item.id === id) {
       newItem.isDone = !item.isDone;
     }
 
-      return newItem;
-    })
-
-    this.setState({ items: newItemList });
-  }
-
-  onClickDelete = id => this.setState(state => ({
-    items: state.items.filter(item => item.id !== id)
+    return newItem;
   }));
 
-  onClickAdd = value => this.setState(state => ({
-    items: [
-      ...state.items,
+  const onClickDelete = id => setItems(items.filter(item => item.id !== id));
+
+  const onClickAdd = value => {
+    setItems([
+      ...items,
       {
         value: value,
         isDone: false,
-        id: state.count + 1
+        id: tasksCount + 1
       }
-    ],
-    count: state.count + 1
-  }));
+    ])
+  };
 
-  render() {
-    return (
-      <div className={styles.container}>
-        <h1 className={styles.title}>Important things to do:</h1>
-        <InputItem onClickAdd={this.onClickAdd} />
-        <ItemList
-          items={this.state.items}
-          onClickDone={this.onClickDone}
-          onClickDelete={this.onClickDelete}
-        />
-        <Footer count={this.state.count} />
-      </div>
-    );
-  }
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>Important things to do:</h1>
+      <InputItem onClickAdd={onClickAdd} />
+      <ItemList
+        items={items}
+        onClickDone={onClickDone}
+        onClickDelete={onClickDelete}
+      />
+      <Footer count={tasksCount} />
+    </div>
+  );
 };
 
 export default App;
