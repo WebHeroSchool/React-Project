@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './About.module.css';
-import Loader from '../Loader/Loader.gif';
 import CardContent from '@material-ui/core/CardContent';
 import { Octokit } from '@octokit/rest';
 
@@ -48,7 +47,8 @@ class About extends React.Component {
     return(
       <CardContent className={styles.container}>
          <h1>
-           { isLoading ? <img src={ Loader } alt='Loading...' /> : 'About' }
+           { isLoading ? <img src='https://codetea.com/content/images/2017/09/LEGO-Loader.gif'
+              alt='Loading...' className={styles.loader} /> : 'About' }
          </h1>
 
          { !isLoading &&
