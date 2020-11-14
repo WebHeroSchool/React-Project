@@ -4,19 +4,22 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 
-const Footer = ({ count }) => {
-  Footer.propTypes = {
-    count: PropTypes.number.isRequired
-  }
-  
+const Footer = ({ count, onClickFilter, filter, onClickDeleteComplited }) => {
+
   return (<div className={styles.footer}>
     <span className={styles.tasks}>{count} items left</span>
-    <ButtonGroup className={styles.buttons}>
-      <Button>All</Button>
-      <Button>Active</Button>
-      <Button>Complete</Button>
+    <ButtonGroup 
+      className={styles.buttons}
+      value={filter}
+    >
+      <Button onClick={() => onClickFilter('all')}>All</Button>
+      <Button onClick={() => onClickFilter('active')}>Active</Button>
+      <Button onClick={() => onClickFilter('done')}>Complete</Button>
     </ButtonGroup>
-    <Button size="small">
+    <Button
+      size="small"
+      onClick={() => onClickDeleteComplited()}
+    >
       Clear Completed
     </Button>
   </div>)

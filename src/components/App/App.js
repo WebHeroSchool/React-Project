@@ -4,28 +4,38 @@ import Todo from '../Todo/Todo';
 import About from '../About/About';
 import Contacts from '../Contacts/Contacts';
 import styles from './App.module.css';
-import {MenuItem, MenuList} from '@material-ui/core';
+import '../Images/logo.png';
 
 const App = () => {
   return (
     <Router>
       <div className={styles.container}>
-        <MenuList>
-          <Link to='/' className={styles.link}>
-            <MenuItem>About</MenuItem>
-          </Link>
-          <Link to='/todo' className={styles.link}>
-            <MenuItem>Todo</MenuItem>
-          </Link>
-          <Link to='/contacts' className={styles.link}>
-            <MenuItem>Contacts</MenuItem>
-          </Link>
-        </MenuList>
+       <div className={styles.menu}>
+        <Link to='/' className={styles.link}>
+          <div className={styles.item}>
+            About
+          </div>
+        </Link>
+        <Link to='/todo' className={styles.link}>
+          <div className={styles.item}>
+            Todo
+          </div>
+        </Link>
+        <Link to='/contacts' className={styles.link}>
+          <div className={styles.item}>
+            Contacts
+          </div>
+        </Link>
+       </div>
       </div>
       <div>
         <Route path='/' exact component={About} />
         <Route path='/todo' component={Todo} />
         <Route path='/contacts' component={Contacts} />
+      </div>
+      <div className={styles.footer}>
+        <p className={styles.text}>created in</p>
+        <img src={require('../Images/logo.png')} alt='school' className={styles.picture} />
       </div>
     </Router>
   )

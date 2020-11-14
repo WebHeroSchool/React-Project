@@ -6,49 +6,57 @@ import Button from '@material-ui/core/Button';
 class InputItem extends React.Component {
   state = {
     inputValue: '',
-    inputError: false
+    error: false,
+    errorMessage: '',
+    items: []
   };
 
   onButtonClick = () => {
-    if (this.state.inputValue === '') {
-      this.setState({ inputError: true})
+    if (this.state.inputValue !== '') {
+      if (this.props.items.find((item) => this.state.inputValue === item.value)) {
+        this.setState({
+          error: true,
+          errorMessage: 'Oh, something went wrong...'
+        });
+      } else {
+        this.setState({
+          inputValue: '',
+          error: false,
+          errorMessage: ''
+        });
+        this.props.onClickAdd(this.state.inputValue);
+      }
     } else {
-      this.props.onClickAdd(this.state.inputValue);
+      this.setState({
+        error: true,
+        errorMessage: 'Oh, something went wrong...'
+      });
     }
-
-    this.setState ({
-      inputValue: ''
-    });
   }
 
   render () {
-    const { onClickAdd } = this.props;
-
-    return (<div className={styles.input}>
-      <div>
-        <TextField
-          error={this.state.inputError}
-          helperText="Empty space"
-          label="Text"
-          defaultValue="Add task"
-          helperText="Enter the task You need"
-          margin="dense"
-          variant="outlined"
-          value={this.state.inputValue}
-          onChange={event => {
-            this.setState({ inputError: false })
-            this.setState({ inputValue: event.target.value })}
-          }
-        />
-      </div>
-      <div className={styles.adding}>
-        <Button
-          size="large"
-          onClick={this.onButtonClick}
-        >
-          Add
-        </Button>
-      </div>
+    return (<div className={styles.container}>
+        <div className={styles.input}>
+          <TextField
+            helperText={this.state.errorMessage}
+            label="Text"
+            defaultValue="Add task"
+            helperText="Enter the task you need"
+            margin="dense"
+            variant="outlined"
+            value={this.state.inputValue}
+            error={this.state.error}
+            onChange={(event) => this.setState({ inputValue: event.target.value })}
+          />
+        </div>
+        <div className={styles.button_wrap}>
+          <Button
+            size="large"
+            onClick={this.onButtonClick}
+          >
+            Add
+          </Button>
+        </div>
     </div>);
   }
 }

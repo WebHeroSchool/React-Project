@@ -4,71 +4,101 @@ import ItemList from '../ItemList/ItemList';
 import Footer from '../Footer/Footer';
 import styles from './Todo.module.css';
 
-
 const Todo = () => {
-  const [items, setItems] = useState ([
-    {
-      value: 'Read a book',
-      isDone: false,
-      id: 1
-    },
-    {
-      value: 'Cook a pie',
-      isDone: false,
-      id: 2
-    },
-    {
-      value: 'Go for a walk',
-      isDone: false,
-      id: 3
-    }
-  ]);
+  const initialState = {
+    items: JSON.parse(localStorage.getItem('items')) || [],
+    filter: 'all',
+    count: JSON.parse(localStorage.getItem('count')) || 0,
+    item: ''
+  };
+
+  const [items, setItem] = useState(initialState.items);
+  const [count, setCount] = useState(initialState.count);
+  const [filter, setFilter] = useState(initialState.filter);
 
   useEffect(() => {
-    console.log('create');
-  });
-
-  useEffect(() => {
-    console.log('update');
+    localStorage.setItem('items', JSON.stringify(items));
   }, [items]);
 
-  let tasksCount = items.length;
+  const onClickDone = (id) => {
+    const newItemList = (items.map((item) => {
+      const newItem = { ...item };
 
-  const onClickDone = id => setItems(items.map(item => {
-    let newItem = { ...item };
+      if (newItem.id === id) {
+        newItem.isDone = !newItem.isDone;
+      }
+      return newItem;
+    }));
+    setItem(newItemList);
+  };
 
-    if (item.id === id) {
-      newItem.isDone = !item.isDone;
-    }
+  const onClickDelete = (id) => {
+    const newItems = items.filter((item) => item.id !== id);
+    setItem(newItems);
+    setCount(count - 1);
+  };
 
-    return newItem;
-  }));
-
-  const onClickDelete = id => setItems(items.filter(item => item.id !== id));
-
-  const onClickAdd = value => {
-    setItems([
+  const onClickAdd = (value) => {
+    const newItems = [
       ...items,
       {
-        value: value,
+        value,
         isDone: false,
-        id: tasksCount + 1
+        id: count + 1
       }
-    ])
+    ];
+    setItem(newItems);
+    setCount((count) => count + 1);
   };
+
+  const onClickDeleteComplited = () => {
+    const newItems = items.filter((it) => it.isDone === false);
+    setItem(newItems);
+  };
+
+  const filterItems = () => {
+    if (filter === 'all') {
+      return items;
+    } else if (filter === 'active') {
+      return items.filter((item) => !item.isDone);
+    } else if (filter === 'done') {
+      return items.filter((item) => item.isDone);
+    }
+  };
+
+  const onClickFilter = (filter) => {
+    setFilter(filter);
+  };
+
+  useEffect(() => {
+    localStorage.setItem('count', JSON.stringify(count));
+  }, [count]);
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Important things to do:</h1>
-      <InputItem onClickAdd={onClickAdd} />
-      <ItemList
+      <h1 className={styles.title}>
+        Important things to do:
+      </h1>
+      <InputItem
+        onClickAdd={onClickAdd}
         items={items}
+      />
+      <ItemList
         onClickDone={onClickDone}
         onClickDelete={onClickDelete}
+        filterItems={filterItems}
+        items={items}
       />
-      <Footer count={tasksCount} />
+      <Footer
+        onClickFilter={onClickFilter}
+        filter={filter}
+        filterItems={filterItems}
+        onClickDeleteComplited={onClickDeleteComplited}
+        count={items.filter((it) => it.isDone === false).length}
+      />
     </div>
-  );
-};
+  )
+}
+
 
 export default Todo;

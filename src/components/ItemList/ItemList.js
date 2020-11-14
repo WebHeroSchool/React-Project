@@ -1,9 +1,9 @@
 import Item from '../Item/Item';
 import styles from './ItemList.module.css';
 
-const ItemList = ({ items, onClickDone, onClickDelete }) => (
+const ItemList = ({ items, onClickDone, onClickDelete, filterItems }) => (
   <ul className={styles.list}>
-  {items.map(item => <li className={styles.li} key={item.id}>
+    { filterItems().map((item) => <li className={styles.li} key={item.value}>
     <Item
       value={item.value}
       isDone={item.isDone}

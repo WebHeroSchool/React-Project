@@ -1,24 +1,84 @@
 .container {
   margin: auto;
-  width: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 57%;
   border-radius: 10px;
-  background-color: #f0e9de;
-  border-right: 1px solid #a0886a;
-  border-bottom: 1px solid #a0886a;
-  box-shadow: 8px 8px 0 0 #d6cebf;
+  background-color: #dae7dc;
+  border-right: 1px solid #b5c7b8;
+  border-bottom: 1px solid #b5c7b8;
+  box-shadow: 8px 8px 0 0 #678b78;
 }
 
 .loader {
-  width: 500px;
-  height: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
 }
 
-.picture {
-  width: 300px;
-  height: 300px;
+.title {
+  font: 30px/30px Georgia, arial, helvetica, sans-serif;
+  font-weight: 700;
 }
 
-.link {
+.main {
+  display: flex;
+  align-items: center;
+}
+
+.photo {
+  display: flex;
+  justify-content: center;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.desctription, .indification,
+.login, .url {
+  font: 21px/25px Georgia, arial, helvetica, sans-serif;
+  padding-left: 30px;
+}
+
+.heading {
+  font: 30px/30px Georgia, arial, helvetica, sans-serif;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.naming {
   text-decoration: none;
-  color: black;
+  color: #000;
+  font: 25px/25px Georgia, arial, helvetica, sans-serif;
+}
+
+.item {
+  margin-bottom: 30px;
+  border-radius: 10px;
+  background-color: #f2f4ff;
+  padding: 10px 10px;
+  transition: .1s ease;
+}
+
+.item:hover {
+  border-right: 3px solid #678b78;
+  border-bottom: 3px solid #678b78;
+}
+
+.error,
+.error_text,
+.error_status {
+  font: 25px/25px Georgia, arial, helvetica, sans-serif;
+  color: red;
 }

@@ -3,18 +3,18 @@ body {
   margin: 0;
   font-family: Georgia, sans-serif;
   font-size: 15px;
-  background-color: #e5dacc;
+  background: url(../Images/green-background.jpg);
   color: #000;
 }
 
 .container {
   margin: auto;
-  width: 550px;
+  width: 700px;
   border-radius: 10px;
-  background-color: #f0e9de;
-  border-right: 1px solid #a0886a;
-  border-bottom: 1px solid #a0886a;
-  box-shadow: 8px 8px 0 0 #d6cebf;
+  background-color: #dae7dc;
+  border-right: 1px solid #b5c7b8;
+  border-bottom: 1px solid #b5c7b8;
+  box-shadow: 8px 8px 0 0 #678b78;
 }
 
 .title {

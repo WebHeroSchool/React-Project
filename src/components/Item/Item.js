@@ -13,22 +13,22 @@ class Item extends React.Component {
     return (<div className={styles.wrap}>
       <Checkbox
         color="default"
+        checked={isDone}
         onClick={() => onClickDone(id)}
       />
-      <span className={
-      classnames({
-        [styles.item]: true,
-        [styles.done]: isDone
-      })
-      }> 
+      <div className={
+        classnames({
+          [styles.item]: true,
+          [styles.done]: isDone
+        })}> 
       {value}
-      </span>
+      </div>
       <IconButton
         className={styles.button}
         aria-label="delete"
       >
         <DeleteIcon
-          onClick = {() => onClickDelete(id)}
+          onClick={() => onClickDelete(id)}
         />
       </IconButton>
     </div>)
