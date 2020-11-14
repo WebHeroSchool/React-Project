@@ -1,39 +1,44 @@
 import React from 'react';
-import InputItem from '../InputItem/InputItem';
-import ItemList from '../ItemList/ItemList';
-import Footer from '../Footer/Footer';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Todo from '../Todo/Todo';
+import About from '../About/About';
+import Contacts from '../Contacts/Contacts';
 import styles from './App.module.css';
+import '../Images/logo.png';
 
-class App extends React.Component {
-  state = {
-    items: [
-      {
-        value: 'Read a book',
-        isDone: true
-      },
-      {
-        value: 'Cook a pie',
-        isDone: false
-      },
-      {
-        value: 'Go for a walk',
-        isDone: true
-      }
-    ]
-  };
-
-  onClickDone = isDone => console.log(isDone);
-
-  render() {
-    return (
+const App = () => {
+  return (
+    <Router>
       <div className={styles.container}>
-        <h1 className={styles.title}>Important things to do:</h1>
-        <InputItem />
-        <ItemList items={this.state.items} onClickDone={this.onClickDone} />
-        <Footer count={3} />
+       <div className={styles.menu}>
+        <Link to='/' className={styles.link}>
+          <div className={styles.item}>
+            About
+          </div>
+        </Link>
+        <Link to='/todo' className={styles.link}>
+          <div className={styles.item}>
+            Todo
+          </div>
+        </Link>
+        <Link to='/contacts' className={styles.link}>
+          <div className={styles.item}>
+            Contacts
+          </div>
+        </Link>
+       </div>
       </div>
-    );
-  }
-};
+      <div>
+        <Route path='/' exact component={About} />
+        <Route path='/todo' component={Todo} />
+        <Route path='/contacts' component={Contacts} />
+      </div>
+      <div className={styles.footer}>
+        <p className={styles.text}>created in</p>
+        <img src={require('../Images/logo.png')} alt='school' className={styles.picture} />
+      </div>
+    </Router>
+  )
+}
 
 export default App;

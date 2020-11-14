@@ -1,5 +1,5 @@
 .footer {
-  padding-top: 15px;
+  padding-top: 7px;
   text-align: center;
 }
 
@@ -9,12 +9,4 @@
 
 .buttons {
   padding-right: 20px;
-}
-
-.inside {
-  font-size: 10px;
-}
-
-.outside {
-  font-size: 10px;
 }

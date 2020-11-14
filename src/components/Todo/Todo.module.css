@@ -1,0 +1,22 @@
+html,
+body {
+  margin: 0;
+  font-family: Georgia, sans-serif;
+  font-size: 15px;
+  background: url(../Images/green-background.jpg);
+  color: #000;
+}
+
+.container {
+  margin: auto;
+  width: 700px;
+  border-radius: 10px;
+  background-color: #dae7dc;
+  border-right: 1px solid #b5c7b8;
+  border-bottom: 1px solid #b5c7b8;
+  box-shadow: 8px 8px 0 0 #678b78;
+}
+
+.title {
+  text-align: center;
+}
